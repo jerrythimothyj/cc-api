@@ -1,5 +1,6 @@
 import { registerDecorator, ValidationOptions, ValidationArguments } from 'class-validator';
 import * as luhn from 'luhn';
+import * as R from 'ramda';
 
 export function IsValidCreditCardNumber(validationOptions?: ValidationOptions) {
   return (object: any, propertyName: string) => {
@@ -11,7 +12,7 @@ export function IsValidCreditCardNumber(validationOptions?: ValidationOptions) {
       options: validationOptions,
       validator: {
         validate(value: any) {
-          return luhn.validate(value);
+          return luhn.validate(R.replace(/\s/g, '', value));
         },
       },
     });
