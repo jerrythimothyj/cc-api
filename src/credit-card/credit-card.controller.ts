@@ -5,7 +5,7 @@ import { CreditCardDto } from './credit-card.dto';
 @Controller('credit-card')
 export class CreditCardController {
 
-  constructor(private readonly creditCardService: InMemoryDBService<CreditCardDto>) {}
+  constructor(private readonly creditCardService: InMemoryDBService<CreditCardDto>) { }
 
   @Get()
   findAll(): CreditCardDto[] {
@@ -14,6 +14,6 @@ export class CreditCardController {
 
   @Post()
   createUser(@Body() creditCard: CreditCardDto): CreditCardDto {
-    return this.creditCardService.create(creditCard);
+    return this.creditCardService.create({ ...creditCard, balance: 0 });
   }
 }
