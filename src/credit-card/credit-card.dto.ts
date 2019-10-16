@@ -2,7 +2,7 @@ import { IsNotEmpty, IsNumber } from 'class-validator';
 import { IsValidCreditCardNumber } from '../services/is-valid-credit-card/is-valid-credit-card.service';
 
 export class CreditCardDto {
-  id: number;
+  id?: number;
 
   @IsNotEmpty()
   name: string;
@@ -15,5 +15,5 @@ export class CreditCardDto {
   @IsNumber()
   limit: number;
 
-  balance: number;
+  balance?: number;
 }

@@ -8,12 +8,12 @@ export class CreditCardController {
   constructor(private readonly creditCardService: InMemoryDBService<CreditCardDto>) { }
 
   @Get()
-  findAll(): CreditCardDto[] {
+  getAll(): CreditCardDto[] {
     return this.creditCardService.getAll();
   }
 
   @Post()
-  createUser(@Body() creditCard: CreditCardDto): CreditCardDto {
+  add(@Body() creditCard: CreditCardDto): CreditCardDto {
     return this.creditCardService.create({ ...creditCard, balance: 0 });
   }
 }
