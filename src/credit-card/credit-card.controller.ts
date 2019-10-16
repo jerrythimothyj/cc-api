@@ -1,19 +1,19 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
 import { InMemoryDBService } from '@nestjs-addons/in-memory-db';
-import { CreditCardEntity } from './credit-card.interface';
+import { CreditCardDto } from './credit-card.dto';
 
 @Controller('credit-card')
 export class CreditCardController {
 
-  constructor(private readonly creditCardService: InMemoryDBService<CreditCardEntity>) {}
+  constructor(private readonly creditCardService: InMemoryDBService<CreditCardDto>) {}
 
   @Get()
-  findAll(): CreditCardEntity[] {
+  findAll(): CreditCardDto[] {
     return this.creditCardService.getAll();
   }
 
   @Post()
-  createUser(@Body() creditCard: CreditCardEntity): CreditCardEntity {
+  createUser(@Body() creditCard: CreditCardDto): CreditCardDto {
     return this.creditCardService.create(creditCard);
   }
 }
