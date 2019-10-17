@@ -10,7 +10,7 @@ export class CreditCardDto {
   @IsValidCreditCardNumber({
     message: 'number should be a valid credit card number',
   })
-  number: number;
+  number: string;
 
   @IsNumber()
   limit: number;
