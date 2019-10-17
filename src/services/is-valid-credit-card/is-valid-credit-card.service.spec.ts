@@ -32,41 +32,5 @@ describe('IsValidCreditCardNumber', () => {
       6378975343274928,
       '6378975343274928',
     ]);
-
-    // const model = new CreditCard();
-    // model.number = 4024007176710456;
-    // validator.validate(model).then(errors => {
-    //   console.log('errors=', errors);
-    //   expect(errors[0].constraints).toEqual({ IsValidCreditCardNumber: 'number should be a valid credit card number' });
-    // });
-
-    // validator.validate(model).then(errors => {
-    //   expect(errors.length).toEqual(0);
-    // });
-
-    // model.number = 4532845049275850455;
-    // validator.validate(model).then(errors => {
-    //   expect(errors.length).toEqual(0);
-    // });
-
-    // model.number = 5162276248967910;
-    // validator.validate(model).then(errors => {
-    //   expect(errors.length).toEqual(0);
-    // });
-
-    // model.number = 3535631613104305205;
-    // validator.validate(model).then(errors => {
-    //   expect(errors.length).toEqual(0);
-    // });
-
-    // model.number = 5020532190829892;
-    // validator.validate(model).then(errors => {
-    //   expect(errors.length).toEqual(0);
-    // });
-
-    // model.number = 6378975343274928;
-    // validator.validate(model).then(errors => {
-    //   expect(errors.length).toEqual(0);
-    // });
   });
 });
