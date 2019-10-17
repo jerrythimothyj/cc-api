@@ -4,6 +4,7 @@ import * as R from 'ramda';
 
 export function IsValidCreditCardNumber(validationOptions?: ValidationOptions) {
   return (object: any, propertyName: string) => {
+    console.log('object=', object, 'propertyName=', propertyName);
     registerDecorator({
       name: 'IsValidCreditCardNumber',
       target: object.constructor,
@@ -12,7 +13,9 @@ export function IsValidCreditCardNumber(validationOptions?: ValidationOptions) {
       options: validationOptions,
       validator: {
         validate(value: any) {
-          return luhn.validate(R.replace(/\s/g, '', value));
+          const incomingValueToString = R.type(value) !== 'String' && R.toString(value) || value;
+          console.log('came to here=', incomingValueToString);
+          return luhn.validate(R.replace(/\s/g, '', incomingValueToString));
         },
       },
     });
