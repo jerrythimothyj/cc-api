@@ -12,7 +12,8 @@ export function IsValidCreditCardNumber(validationOptions?: ValidationOptions) {
       options: validationOptions,
       validator: {
         validate(value: any) {
-          return luhn.validate(R.replace(/\s/g, '', value));
+          const incomingValueToString = R.type(value) !== 'String' && R.toString(value) || value;
+          return luhn.validate(R.replace(/\s/g, '', incomingValueToString));
         },
       },
     });

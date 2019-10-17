@@ -1,18 +1,36 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { IsValidCreditCardService } from './is-valid-credit-card.service';
+import { IsValidCreditCardNumber } from './is-valid-credit-card.service';
+import { CreditCardDto } from '../../credit-card/credit-card.dto';
+import { Validator } from 'class-validator';
+import * as R from 'ramda';
 
-describe('IsValidCreditCardService', () => {
-  let service: IsValidCreditCardService;
+describe('IsValidCreditCardNumber', () => {
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [IsValidCreditCardService],
-    }).compile();
+  const validator = new Validator();
 
-    service = module.get<IsValidCreditCardService>(IsValidCreditCardService);
-  });
+  it('should be able to validate positive scenarios', () => {
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+    class CreditCard {
+      @IsValidCreditCardNumber({
+        message: 'number should be a valid credit card number',
+      })
+      number: number;
+    }
+
+    R.map((ccNumber) => {
+      const model = new CreditCard();
+      model.number = ccNumber;
+      return validator.validate(model).then(errors => {
+        expect(errors.length).toEqual(0);
+      });
+    })([
+      4024007176710456,
+      4532845049275850455,
+      5162276248967910,
+      3535631613104305205,
+      5020532190829892,
+      6378975343274928,
+      '6378975343274928',
+    ]);
   });
 });

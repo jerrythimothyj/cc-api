@@ -15,5 +15,5 @@ export class CreditCardDto {
   @IsNumber()
   limit: number;
 
-  balance: number;
+  balance?: number;
 }
