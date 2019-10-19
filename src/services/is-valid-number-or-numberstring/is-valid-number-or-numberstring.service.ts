@@ -12,6 +12,7 @@ export function IsValidNumberOrNumberString(validationOptions?: ValidationOption
       validator: {
         validate(value: any) {
           const incomingValueToString = R.type(value) !== 'String' && R.toString(value) || value;
+          if (R.isEmpty(incomingValueToString) || R.test(/\s/g, incomingValueToString)) { return false; }
           return !isNaN(incomingValueToString);
         },
       },
