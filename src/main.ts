@@ -4,6 +4,7 @@ import { ValidationPipe422Service } from './services/validation-pipe-422/validat
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   app.useGlobalPipes(new ValidationPipe422Service());
   await app.listen(8080);
 }
