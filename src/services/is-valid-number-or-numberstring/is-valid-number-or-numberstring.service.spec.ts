@@ -31,6 +31,7 @@ describe('IsValidNumberOrNumberString', () => {
     for (const element of numbers) {
       const model = new CreditCard();
       model.number = element;
+
       const errors = await validator.validate(model);
       expect(errors.length).toEqual(0);
     }
@@ -49,6 +50,10 @@ describe('IsValidNumberOrNumberString', () => {
       undefined,
       'something',
       '---------',
+      '',
+      ' ',
+      '   ',
+      '\n',
     ];
     // tslint:disable-next-line:max-classes-per-file
     class CreditCard {

@@ -13,7 +13,9 @@ export class CreditCardDto {
   })
   number: string;
 
-  @IsValidNumberOrNumberString()
+  @IsValidNumberOrNumberString({
+    message: 'limit should be a valid number',
+  })
   limit: number | string;
 
   balance?: number;
